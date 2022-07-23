@@ -30,6 +30,9 @@ var sect_end     = document.querySelector(".endscreen");
 
 var start_Btn = document.querySelector("#startBtn");
 var q_H1      = document.getElementById("#questionH1");
+
+var q_Block   = document.getElementById("#questionBlock");
+
 // var q_List    = document.getElementById("#qList");
 var q_Btn1    = document.getElementById("#questionBtn1");
 var q_Btn2    = document.getElementById("#questionBtn2");
@@ -63,7 +66,19 @@ var q_Btn4Var = "";
 
 // }
 
-start_Btn.addEventListener("click", startQuiz);
+start_Btn.addEventListener("click", reveal(q_Block));
+
+function reveal (section) {
+        // show the question section
+        section.classList.remove("d-none");
+
+}
+
+function hide (section) {
+    // show the question section
+    section.classList.add("d-none");
+
+}
 
 // FUNCTION TO SHUFFLE AN ARRAY
 function shuffle(array) {
