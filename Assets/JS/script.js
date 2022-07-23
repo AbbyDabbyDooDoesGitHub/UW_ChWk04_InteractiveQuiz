@@ -23,11 +23,29 @@ function shuffle(array) {
   
     return array;
 
-    // Used like so
-    //   var arr = [2, 11, 37, 42];
-    //   shuffle(arr);
-    //   console.log(arr);
+}
 
+function generateQuestion {
+    var q1_header = "Question 1 example question wow so question-y?";
+    var q1_answers = ["answer1","answer2","answer3","answer4"];
+    
+    var q2_header = "Question 1 example question wow so question-y?";
+    var q2_answers = ["answer1","answer2","answer3","answer4"];
+
+    var q3_header = "Question 1 example question wow so question-y?";
+    var q3_answers = ["answer1","answer2","answer3","answer4"];
+
+    var q4_header = "Question 1 example question wow so question-y?";
+    var q4_answers = ["answer1","answer2","answer3","answer4"];
+
+    var q5_header = "Question 1 example question wow so question-y?";
+    var q5_answers = ["answer1","answer2","answer3","answer4"];
+
+    shuffle(q1_answers);
+    shuffle(q2_answers);
+    shuffle(q3_answers);
+    shuffle(q4_answers);
+    shuffle(q5_answers);
 }
 
 
