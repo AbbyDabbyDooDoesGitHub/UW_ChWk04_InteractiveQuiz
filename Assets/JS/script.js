@@ -1,4 +1,4 @@
-// alert('JS File is connected');
+alert('JS File is connected');
 
 //function to get random item from an array
 // function get_random (list) {
@@ -29,8 +29,9 @@ var sect_sucFail = document.querySelector(".sucFail");
 var sect_end     = document.querySelector(".endscreen");
 
 var start_Btn = document.querySelector("#startBtn");
-var q_H1      = document.querySelector("#questionH1");
-var q_Btn1    = document.querySelector("#questionBtn1");
+var q_H1      = document.getElementById("#questionH1");
+// var q_List    = document.getElementById("#qList");
+var q_Btn1    = document.getElementById("#questionBtn1");
 var q_Btn2    = document.getElementById("#questionBtn2");
 var q_Btn3    = document.getElementById("#questionBtn3");
 var q_Btn4    = document.getElementById("#questionBtn4");
@@ -40,6 +41,27 @@ var q_Btn1Var = "";
 var q_Btn2Var = "";
 var q_Btn3Var = "";
 var q_Btn4Var = "";
+
+// window.onload = function() {
+
+//     what();
+
+//     function what() {
+//         var sect_start   = document.querySelector(".start");
+//         var sect_q       = document.querySelector(".question");
+//         var sect_sucFail = document.querySelector(".sucFail");
+//         var sect_end     = document.querySelector(".endscreen");
+
+//         var start_Btn = document.querySelector("#startBtn");
+//         var q_H1      = document.querySelector("#questionH1");
+//         var q_Btn1    = document.querySelector("#questionBtn1");
+//         var q_Btn2    = document.getElementById("#questionBtn2");
+//         var q_Btn3    = document.getElementById("#questionBtn3");
+//         var q_Btn4    = document.getElementById("#questionBtn4");
+//         var q_SucFail = document.getElementById("#successFailureText");
+//     };
+
+// }
 
 start_Btn.addEventListener("click", startQuiz);
 
@@ -65,38 +87,47 @@ function shuffle(array) {
 
 function generateQuestion (q_question,q_answerArray) {
     shuffle(q_answerArray);
+
+    console.log("Array:" + q1_A + "   A is " + q1_true);
+
     q_H1.innerHTML   = q_question;
 
-    q_Btn1.innerHTML = q_answerArray[0];
-    q_Btn2.innerHTML = q_answerArray[1];
-    q_Btn3.innerHTML = q_answerArray[2];
-    q_Btn4.innerHTML = q_answerArray[3];
+    q_Btn1.innerHTML = "q_answerArray[0]";
+    q_Btn2.innerHTML = "q_answerArray[1]";
+    q_Btn3.innerHTML = "q_answerArray[2]";
+    q_Btn4.innerHTML = "q_answerArray[3]";
 
-    var q_Btn1Var = q_answerArray[0];
-    var q_Btn2Var = q_answerArray[1];
-    var q_Btn3Var = q_answerArray[2];
-    var q_Btn4Var = q_answerArray[3];
+    // q_Btn1.innerHTML = q_answerArray[0];
+    // q_Btn2.innerHTML = q_answerArray[1];
+    // q_Btn3.innerHTML = q_answerArray[2];
+    // q_Btn4.innerHTML = q_answerArray[3];
 
-    qNum = ++;
+    // var q_Btn1Var = q_answerArray[0];
+    // var q_Btn2Var = q_answerArray[1];
+    // var q_Btn3Var = q_answerArray[2];
+    // var q_Btn4Var = q_answerArray[3];
 
-    q_Btn1.addEventListener("click", nextQ(q_Btn1Var));
-    q_Btn2.addEventListener("click", nextQ(q_Btn2Var));
-    q_Btn3.addEventListener("click", nextQ(q_Btn3Var));
-    q_Btn4.addEventListener("click", nextQ(q_Btn4Var));
+    // qNum = ++
+
+    // q_Btn1.addEventListener("click", nextQ(q_Btn1Var));
+    // q_Btn2.addEventListener("click", nextQ(q_Btn2Var));
+    // q_Btn3.addEventListener("click", nextQ(q_Btn3Var));
+    // q_Btn4.addEventListener("click", nextQ(q_Btn4Var));
     
 }
 
 function startQuiz() {
     console.log("start quiz btn clicked");
+    console.log("Array:" + q1_A + "   A is " + q1_true);
 
     // hide the start section
     sect_start.classList.add("d-none");
 
-    // change question to q1
-    generateQuestion(q1_H,q1_A);
-
     // show the question section
     sect_q.classList.remove("d-none");
+
+    // change question to q1
+    generateQuestion(q1_H,q1_A);
     
 };
 
