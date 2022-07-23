@@ -1,7 +1,64 @@
 /* Makes it so there's no underline under the hyperlink */
 /* a {
     text-decoration: none;
-  } */
+} */
+
+header {
+  margin: auto;
+}
+
+.navbar {
+  font-size: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+
+}
+
+body {
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  padding-bottom: 10px;
+}
+
+#startBtn {
+  margin-top: 10px;
+}
+
+.question {
+  margin: auto;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.questionBtn {
+  padding: 0;
+  margin:0;
+  margin-bottom: 10px;
+  width: 60vw;
+  max-width: 400px;
+
+  text-align: start;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#divLine {
+  margin: auto;
+  margin-top: 10px;
+  background-color: hsl(0, 0%, 0%,.5);
+  height: 3px;
+  width: 45vw;
+  max-width: 300px;
+  align-self: auto;
+}
+
+#successFailureText {
+  margin-top: 10px;
+}
 
 /* Media Query Example */
 /* @media screen and (max-width: 992px) {
