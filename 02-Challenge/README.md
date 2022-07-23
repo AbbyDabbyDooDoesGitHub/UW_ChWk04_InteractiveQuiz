@@ -1,5 +1,48 @@
 # 04 Web APIs: Code Quiz
 
+# HelpfulReferencesAndDefaults
+
+# UW_ChWk03_PasswordGenerator
+## Overview
+<!-- ```
+OVERVIEW TEXT HERE
+``` -->
+
+Link to Web App: <!-- LINK TO DEPLOYMENT HERE -->
+
+App Preview:
+<!-- Replace with path to screenshot   ![My Password Generator Screenshot](./Assets/MyPasswordGeneratorScreenShot.PNG "My Password Generator Screenshot") -->
+
+## Notes
+
+<!-- Use this area to add personal notes on implementation, etc -->
+
+## User Story
+
+```
+AS AN 
+I WANT 
+SO THAT 
+```
+
+## Acceptance Criteria
+
+```
+GIVEN 
+WHEN 
+THEN 
+```
+
+<!-- ## Resources Used 
+
+Use this area to list referenced apis, etc -->
+
+
+<!-- Any additional notes here  -->
+
+
+
+
 ## Your Task
 
 At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 
