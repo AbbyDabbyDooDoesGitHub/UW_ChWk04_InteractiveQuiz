@@ -9,22 +9,22 @@ var qNum = 0;
 
 var q1_H    = "Question 1 example question wow so question-y?";
 var q1_A    = ["answer1","answer2","answer3","answer4"];
-var q1_true = q1_A[0];
+var q1_true = "answer1";
 var q2_H    = "Question 2 example question wow so question-y?";
 var q2_A    = ["answer1","answer2","answer3","answer4"];
-var q2_true = q2_A[0];
+var q2_true = "answer1";
 var q3_H    = "Question 3 example question wow so question-y?";
 var q3_A    = ["answer1","answer2","answer3","answer4"];
-var q3_true = q3_A[0];
+var q3_true = "answer1";
 var q4_H    = "Question 4 example question wow so question-y?";
 var q4_A    = ["answer1","answer2","answer3","answer4"];
-var q4_true = q4_A[0];
+var q4_true = "answer1";
 var q5_H    = "Question 5 example question wow so question-y?";
 var q5_A    = ["answer1","answer2","answer3","answer4"];
-var q5_true = q5_A[0];
+var q5_true = "answer1";
 
 var sect_start   = document.querySelector(".start");
-var sect_q       = document.querySelector(".question");
+// var sect_q       = document.querySelector(".question");
 var sect_sucFail = document.querySelector(".sucFail");
 var sect_end     = document.querySelector(".endscreen");
 
@@ -48,26 +48,22 @@ var q_Btn4Var = "";
 
 
 
-start_Btn.addEventListener("click", function(){reveal(q_Block);});
+start_Btn.addEventListener("click", function(){startQuiz();});
 
+q_Btn1.addEventListener("click", function(){nextQ(q_Btn1Var);});
+q_Btn2.addEventListener("click", function(){nextQ(q_Btn2Var);});
+q_Btn3.addEventListener("click", function(){nextQ(q_Btn3Var);});
+q_Btn4.addEventListener("click", function(){nextQ(q_Btn4Var);});
 
-function test_click_event() {
-    alert("Button clicked");
-}
 
 function reveal (section) {
     console.log("ran reveal()");
-        // show the question section
-        // section.classList.remove("d-none");
-        section.style.display = "block";
-
+    section.style.display = "block";
 }
 
 function hide (section) {
-    // show the question section
-    // section.classList.add("d-none");
+    console.log("ran hide()");
     section.style.display = "none";
-
 }
 
 // FUNCTION TO SHUFFLE AN ARRAY
@@ -97,39 +93,36 @@ function generateQuestion (q_question,q_answerArray) {
 
     q_H1.innerHTML   = q_question;
 
-    q_Btn1.innerHTML = "q_answerArray[0]";
-    q_Btn2.innerHTML = "q_answerArray[1]";
-    q_Btn3.innerHTML = "q_answerArray[2]";
-    q_Btn4.innerHTML = "q_answerArray[3]";
+    q_Btn1.innerHTML = q_answerArray[0];
+    q_Btn2.innerHTML = q_answerArray[1];
+    q_Btn3.innerHTML = q_answerArray[2];
+    q_Btn4.innerHTML = q_answerArray[3];
 
-    // q_Btn1.innerHTML = q_answerArray[0];
-    // q_Btn2.innerHTML = q_answerArray[1];
-    // q_Btn3.innerHTML = q_answerArray[2];
-    // q_Btn4.innerHTML = q_answerArray[3];
+    q_Btn1Var = q_answerArray[0];
+    q_Btn2Var = q_answerArray[1];
+    q_Btn3Var = q_answerArray[2];
+    q_Btn4Var = q_answerArray[3];
 
-    // var q_Btn1Var = q_answerArray[0];
-    // var q_Btn2Var = q_answerArray[1];
-    // var q_Btn3Var = q_answerArray[2];
-    // var q_Btn4Var = q_answerArray[3];
+    // console.log("q_Btn1Var is "+q_Btn1Var);
+    // console.log("q_Btn2Var is "+q_Btn2Var);
+    // console.log("q_Btn3Var is "+q_Btn3Var);
+    // console.log("q_Btn4Var is "+q_Btn4Var);
 
-    // qNum = ++
+    console.log("qNum is "+qNum);
 
-    // q_Btn1.addEventListener("click", nextQ(q_Btn1Var));
-    // q_Btn2.addEventListener("click", nextQ(q_Btn2Var));
-    // q_Btn3.addEventListener("click", nextQ(q_Btn3Var));
-    // q_Btn4.addEventListener("click", nextQ(q_Btn4Var));
+    var tempQNum = qNum + 1;
+    qNum = tempQNum;
     
+    console.log("qNum is "+qNum);
+
 }
 
 function startQuiz() {
     console.log("start quiz btn clicked");
     console.log("Array:" + q1_A + "   A is " + q1_true);
 
-    // hide the start section
-    sect_start.classList.add("d-none");
-
-    // show the question section
-    sect_q.classList.remove("d-none");
+    hide(sect_start);
+    reveal(q_Block);
 
     // change question to q1
     generateQuestion(q1_H,q1_A);
@@ -164,25 +157,39 @@ function nextQ(answerBtn) {
 }
 
 function verifyAnswer (answerBtn,qN_true) {
+
+    console.log("answerBtn is "+answerBtn);
+    console.log("qN_true is "+qN_true);
+
+    
+    console.log("q_Btn1Var is "+q_Btn1Var);
+    console.log("q_Btn2Var is "+q_Btn2Var);
+    console.log("q_Btn3Var is "+q_Btn3Var);
+    console.log("q_Btn4Var is "+q_Btn4Var);
+
     if (answerBtn===qN_true) {
         q_SucFail.innerHTML = "Correct!";
-        sect_sucFail.classList.add("d-none");
 
-        sect_q.classList.remove("d-none");
+        reveal(q_SucFail);
+
+        // hide(q_SucFail.);
+        // sect_sucFail.classList.add("d-none");
+
         setTimeout(() => {
-            const const_sucFail = sect_sucFail;
-            const_sucFail.classList.add("d-none"); }, 5000); // 👈️ time in milliseconds
+            hide(q_SucFail); }, 2000); // 👈️ time in milliseconds
 
     } else {
         q_SucFail.innerHTML = "Wrong Answer! Time Penalty Applied";
-        sect_sucFail.classList.add("d-none");
+        reveal(q_SucFail);
+        // sect_sucFail.classList.add("d-none");
 
-        sect_q.classList.remove("d-none");
+        // sect_q.classList.remove("d-none");
         setTimeout(() => {
-            const const_sucFail = sect_sucFail;
-            const_sucFail.classList.add("d-none"); }, 5000); // 👈️ time in milliseconds
+            // const const_sucFail = sect_sucFail;
+            // const_sucFail.classList.add("d-none"); }, 5000);
+            hide(q_SucFail); }, 2000); // 👈️ time in milliseconds
         
-        applyTimePenalty();
+        // applyTimePenalty();
 
     }
 
