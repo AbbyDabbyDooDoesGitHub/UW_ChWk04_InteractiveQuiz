@@ -118,8 +118,8 @@ function generateQuestion (q_question,q_answerArray) {
 }
 
 function startQuiz() {
-    console.log("start quiz btn clicked");
-    console.log("Array:" + q1_A + "   A is " + q1_true);
+    // console.log("start quiz btn clicked");
+    // console.log("Array:" + q1_A + "   A is " + q1_true);
 
     hide(sect_start);
     reveal(q_Block);
@@ -130,23 +130,23 @@ function startQuiz() {
 };
 
 function nextQ(answerBtn) {
-    if (qNum=1) {
+    if (qNum===1) {
         verifyAnswer(answerBtn, q1_true);
         generateQuestion(q2_H,q2_A);
 
-    } else if (qNum=2) {
+    } else if (qNum===2) {
         verifyAnswer(answerBtn, q2_true);
         generateQuestion(q3_H,q3_A);
 
-    } else if (qNum=3) {
+    } else if (qNum===3) {
         verifyAnswer(answerBtn, q3_true);
         generateQuestion(q4_H,q4_A);
 
-    } else if (qNum=4) {
+    } else if (qNum===4) {
         verifyAnswer(answerBtn, q4_true);
         generateQuestion(q5_H,q5_A);
 
-    } else if (qNum=5) {
+    } else if (qNum===5) {
         verifyAnswer(answerBtn, q5_true);
         showEndscreen();
 
