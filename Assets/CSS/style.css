@@ -60,6 +60,14 @@ h1 {
   margin-top: 10px;
 }
 
+#questionBlock {
+  display: none;
+}
+
+.sucFail {
+  display: none;
+}
+
 /* Media Query Example */
 /* @media screen and (max-width: 992px) {
   h2 {

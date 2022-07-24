@@ -1,4 +1,4 @@
-alert('JS File is connected');
+// alert('JS File is connected');
 
 //function to get random item from an array
 // function get_random (list) {
@@ -28,55 +28,45 @@ var sect_q       = document.querySelector(".question");
 var sect_sucFail = document.querySelector(".sucFail");
 var sect_end     = document.querySelector(".endscreen");
 
-var start_Btn = document.querySelector("#startBtn");
-var q_H1      = document.getElementById("#questionH1");
+var start_Btn = document.getElementById('startBtn');
+// var start_Btn = document.querySelector("#startBtn");
+var q_H1      = document.getElementById("questionH1");
 
-var q_Block   = document.getElementById("#questionBlock");
+var q_Block   = document.getElementById("questionBlock");
 
 // var q_List    = document.getElementById("#qList");
-var q_Btn1    = document.getElementById("#questionBtn1");
-var q_Btn2    = document.getElementById("#questionBtn2");
-var q_Btn3    = document.getElementById("#questionBtn3");
-var q_Btn4    = document.getElementById("#questionBtn4");
-var q_SucFail = document.getElementById("#successFailureText");
+var q_Btn1    = document.getElementById("questionBtn1");
+var q_Btn2    = document.getElementById("questionBtn2");
+var q_Btn3    = document.getElementById("questionBtn3");
+var q_Btn4    = document.getElementById("questionBtn4");
+var q_SucFail = document.getElementById("successFailureText");
 
 var q_Btn1Var = "";
 var q_Btn2Var = "";
 var q_Btn3Var = "";
 var q_Btn4Var = "";
 
-// window.onload = function() {
 
-//     what();
 
-//     function what() {
-//         var sect_start   = document.querySelector(".start");
-//         var sect_q       = document.querySelector(".question");
-//         var sect_sucFail = document.querySelector(".sucFail");
-//         var sect_end     = document.querySelector(".endscreen");
+start_Btn.addEventListener("click", function(){reveal(q_Block);});
 
-//         var start_Btn = document.querySelector("#startBtn");
-//         var q_H1      = document.querySelector("#questionH1");
-//         var q_Btn1    = document.querySelector("#questionBtn1");
-//         var q_Btn2    = document.getElementById("#questionBtn2");
-//         var q_Btn3    = document.getElementById("#questionBtn3");
-//         var q_Btn4    = document.getElementById("#questionBtn4");
-//         var q_SucFail = document.getElementById("#successFailureText");
-//     };
 
-// }
-
-start_Btn.addEventListener("click", reveal(q_Block));
+function test_click_event() {
+    alert("Button clicked");
+}
 
 function reveal (section) {
+    console.log("ran reveal()");
         // show the question section
-        section.classList.remove("d-none");
+        // section.classList.remove("d-none");
+        section.style.display = "block";
 
 }
 
 function hide (section) {
     // show the question section
-    section.classList.add("d-none");
+    // section.classList.add("d-none");
+    section.style.display = "none";
 
 }
 
