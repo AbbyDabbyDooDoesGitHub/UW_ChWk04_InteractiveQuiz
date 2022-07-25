@@ -25,8 +25,9 @@ var q5_true = "answer1";
 
 var sect_start   = document.querySelector(".start");
 // var sect_q       = document.querySelector(".question");
-var sect_sucFail = document.querySelector(".sucFail");
-var sect_end     = document.querySelector(".endscreen");
+// var sect_sucFail = document.querySelector(".sucFail");
+var sect_sucFail = document.getElementById("sucFail");
+var sect_end     = document.getElementById("endscreen");
 
 var start_Btn = document.getElementById('startBtn');
 // var start_Btn = document.querySelector("#startBtn");
@@ -170,24 +171,24 @@ function verifyAnswer (answerBtn,qN_true) {
     if (answerBtn===qN_true) {
         q_SucFail.innerHTML = "Correct!";
 
-        reveal(q_SucFail);
+        reveal(sect_sucFail);
 
-        // hide(q_SucFail.);
+        // hide(sect_sucFail);
         // sect_sucFail.classList.add("d-none");
 
         setTimeout(() => {
-            hide(q_SucFail); }, 2000); // 👈️ time in milliseconds
+            hide(sect_sucFail); }, 2000); // 👈️ time in milliseconds
 
     } else {
         q_SucFail.innerHTML = "Wrong Answer! Time Penalty Applied";
-        reveal(q_SucFail);
+        reveal(sect_sucFail);
         // sect_sucFail.classList.add("d-none");
 
         // sect_q.classList.remove("d-none");
         setTimeout(() => {
             // const const_sucFail = sect_sucFail;
             // const_sucFail.classList.add("d-none"); }, 5000);
-            hide(q_SucFail); }, 2000); // 👈️ time in milliseconds
+            hide(sect_sucFail); }, 2000); // 👈️ time in milliseconds
         
         // applyTimePenalty();
 

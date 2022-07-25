@@ -64,8 +64,28 @@ h1 {
   display: none;
 }
 
-.sucFail {
+#sucFail {
   display: none;
+}
+
+#initialEntryBox {
+  display: inline-block;
+  width:250px;
+}
+
+#initialEntryBoxDiv  {
+  margin: auto;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+#endscreenH1 {
+  padding-bottom: 10px;
+}
+
+#initialEntryBtn {
+  margin-top: -4px;
+  display: inline-block;
 }
 
 /* Media Query Example */
