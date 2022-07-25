@@ -88,6 +88,10 @@ h1 {
   display: inline-block;
 }
 
+#endscreen {
+  display: none;
+}
+
 /* Media Query Example */
 /* @media screen and (max-width: 992px) {
   h2 {

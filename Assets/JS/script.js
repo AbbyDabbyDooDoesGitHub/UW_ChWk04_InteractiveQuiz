@@ -5,7 +5,8 @@
 //     return list[Math.floor((Math.random()*list.length))]; 
 // }
 
-var qNum = 0;
+var qNum     = 0;
+var duration = 75;
 
 var q1_H    = "Question 1 example question wow so question-y?";
 var q1_A    = ["answer1","answer2","answer3","answer4"];
@@ -24,23 +25,21 @@ var q5_A    = ["answer1","answer2","answer3","answer4"];
 var q5_true = "answer1";
 
 var sect_start   = document.querySelector(".start");
-// var sect_q       = document.querySelector(".question");
-// var sect_sucFail = document.querySelector(".sucFail");
 var sect_sucFail = document.getElementById("sucFail");
 var sect_end     = document.getElementById("endscreen");
 
 var start_Btn = document.getElementById('startBtn');
-// var start_Btn = document.querySelector("#startBtn");
 var q_H1      = document.getElementById("questionH1");
 
 var q_Block   = document.getElementById("questionBlock");
 
-// var q_List    = document.getElementById("#qList");
 var q_Btn1    = document.getElementById("questionBtn1");
 var q_Btn2    = document.getElementById("questionBtn2");
 var q_Btn3    = document.getElementById("questionBtn3");
 var q_Btn4    = document.getElementById("questionBtn4");
 var q_SucFail = document.getElementById("successFailureText");
+var navTimer  = document.getElementById("navbarTimer");
+var endScore  = document.getElementById("endscreenScoreText");
 
 var q_Btn1Var = "";
 var q_Btn2Var = "";
@@ -127,6 +126,8 @@ function startQuiz() {
 
     // change question to q1
     generateQuestion(q1_H,q1_A);
+
+    startTimer();
     
 };
 
@@ -149,7 +150,9 @@ function nextQ(answerBtn) {
 
     } else if (qNum===5) {
         verifyAnswer(answerBtn, q5_true);
-        showEndscreen();
+        hide(q_Block);
+        reveal(sect_end);
+        isItHighscore (duration);
 
     } else {
         console.log("ERROR: qNum is " + qNum);
@@ -173,35 +176,46 @@ function verifyAnswer (answerBtn,qN_true) {
 
         reveal(sect_sucFail);
 
-        // hide(sect_sucFail);
-        // sect_sucFail.classList.add("d-none");
-
         setTimeout(() => {
-            hide(sect_sucFail); }, 2000); // 👈️ time in milliseconds
+            hide(sect_sucFail); }, 1000); // 👈️ time in milliseconds
 
     } else {
         q_SucFail.innerHTML = "Wrong Answer! Time Penalty Applied";
         reveal(sect_sucFail);
-        // sect_sucFail.classList.add("d-none");
 
-        // sect_q.classList.remove("d-none");
         setTimeout(() => {
-            // const const_sucFail = sect_sucFail;
-            // const_sucFail.classList.add("d-none"); }, 5000);
-            hide(sect_sucFail); }, 2000); // 👈️ time in milliseconds
+
+            hide(sect_sucFail); }, 1000); // 👈️ time in milliseconds
         
-        // applyTimePenalty();
+        applyTimePenalty();
 
     }
 
 }
 
 function applyTimePenalty () {
+    var tempDur = duration - 10;
+    duration = tempDur;
 
 }
 
-function showEndscreen () {
+function isItHighscore (score) {
+    duration = 0;
+    navTimer.innerHTML = "Time: " + score;
+    endScore.innerHTML = "You completed the quiz with a score of " + score;
 
+}
+
+function startTimer() {
+
+    setInterval(function () {
+        if (duration > 0) {
+            var tempDur = duration - 1;
+            duration = tempDur;
+
+            navTimer.innerHTML = "Time: " + duration;
+        }
+    }, 1000);
 }
 
 // function setTimeout(() => {
