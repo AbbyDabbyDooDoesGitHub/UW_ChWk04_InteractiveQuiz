@@ -28,6 +28,8 @@ var sect_start   = document.querySelector(".start");
 var sect_sucFail = document.getElementById("sucFail");
 var sect_end     = document.getElementById("endscreen");
 
+var score_Btn = document.getElementById('scoreBtn');
+var close_Btn = document.getElementById('modalX');
 var start_Btn = document.getElementById('startBtn');
 var q_H1      = document.getElementById("questionH1");
 
@@ -47,7 +49,7 @@ var q_Btn3Var = "";
 var q_Btn4Var = "";
 
 
-
+score_Btn.addEventListener("click", function(){showModal();});
 start_Btn.addEventListener("click", function(){startQuiz();});
 
 q_Btn1.addEventListener("click", function(){nextQ(q_Btn1Var);});
@@ -55,6 +57,16 @@ q_Btn2.addEventListener("click", function(){nextQ(q_Btn2Var);});
 q_Btn3.addEventListener("click", function(){nextQ(q_Btn3Var);});
 q_Btn4.addEventListener("click", function(){nextQ(q_Btn4Var);});
 
+
+
+function showModal () {
+    $('#highscoreModal').modal('show');
+    close_Btn.addEventListener("click", function(){closeModal();});
+}
+
+function closeModal () {
+    $('#highscoreModal').modal('hide');
+}
 
 function reveal (section) {
     console.log("ran reveal()");
@@ -102,11 +114,6 @@ function generateQuestion (q_question,q_answerArray) {
     q_Btn2Var = q_answerArray[1];
     q_Btn3Var = q_answerArray[2];
     q_Btn4Var = q_answerArray[3];
-
-    // console.log("q_Btn1Var is "+q_Btn1Var);
-    // console.log("q_Btn2Var is "+q_Btn2Var);
-    // console.log("q_Btn3Var is "+q_Btn3Var);
-    // console.log("q_Btn4Var is "+q_Btn4Var);
 
     console.log("qNum is "+qNum);
 
@@ -218,7 +225,74 @@ function startTimer() {
     }, 1000);
 }
 
-// function setTimeout(() => {
-//     const const_sucFail = sect_sucFail;
-//     const_sucFail.classList.add("d-none"); }, 5000); // 👈️ time in milliseconds
+// function setScoreStorage(){
+
+//     window.localStorage.getItem('user');
+
+//     const score_LS1 = {
+//         initials: "1",
+//         score: "1",
+//     }
+//     const score_LS2 = {
+//         initials: "2",
+//         score: "2",
+//     }
+//     const score_LS3 = {
+//         initials: "3",
+//         score: "3",
+//     }
+//     const score_LS4 = {
+//         initials: "4",
+//         score: "4",
+//     }
+//     const score_LS5 = {
+//         initials: "5",
+//         score: "5",
+//     }
+//     const score_LS6 = {
+//         initials: "6",
+//         score: "1",
+//     }
+//     const score_LS7 = {
+//         initials: "7",
+//         score: "2",
+//     }
+//     const score_LS8 = {
+//         initials: "8",
+//         score: "3",
+//     }
+//     const score_LS9 = {
+//         initials: "9",
+//         score: "4",
+//     }
+//     const score_LS10 = {
+//         initials: "10",
+//         score: "5",
+//     }
+    
+//     window.localStorage.setItem('user', JSON.stringify(person));
+
+//     var score_1   = document.getElementById("modal1");
+//     var score_2   = document.getElementById("modal2");
+//     var score_3   = document.getElementById("modal3");
+//     var score_4   = document.getElementById("modal4");
+//     var score_5   = document.getElementById("modal5");
+//     var score_6   = document.getElementById("modal6");
+//     var score_7   = document.getElementById("modal7");
+//     var score_8   = document.getElementById("modal8");
+//     var score_9   = document.getElementById("modal9");
+//     var score_10  = document.getElementById("modal10");
+
+//     localStorage.setItem["Highscore" => "TEST1","Score"=>"5"];
+//     localStorage.setItem["Highscore"=> "TEST2","Score"=>"7"];
+//     localStorage.setItem["Highscore"=> "TEST3","Score"=>"9"];
+//     localStorage.setItem["Highscore"=> "TEST4","Score"=>"25"];
+//     localStorage.setItem["Highscore"=> "TEST5","Score"=>"45"];
+//     localStorage.setItem["Highscore"=> "TEST6","Score"=>"15"];
+//     localStorage.setItem["Highscore"=> "TEST7","Score"=>"17"];
+//     localStorage.setItem["Highscore"=> "TEST8","Score"=>"19"];
+//     localStorage.setItem["Highscore"=> "TEST9","Score"=>"2"];
+//     localStorage.setItem["Highscore"=> "TEST10","Score"=>"4"];
+// }
+
     

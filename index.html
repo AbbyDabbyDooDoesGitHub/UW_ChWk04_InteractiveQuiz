@@ -22,8 +22,18 @@
 <!-- class for display none d-none -->
 
   <header class="navbar">
-    <h3 class="navbar">View Highscores</h3>
-    <h3 class="navbar" id="navbarTimer">Time: 00</h3>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" id="scoreBtn" data-toggle="modal" data-target="#exampleModalCenter">
+      Launch demo modal
+    </button>
+
+
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#highscoreModal">
+      Launch demo modal
+    </button>
+    <a><h3 class="navbar" id="highscoreBtn" >View Highscores</h3></a> -->
+    
+    <h3 class="navbar" id="navbarTimer">Time: 75</h3>
   </header>
 
   <body>
@@ -80,6 +90,35 @@
 
       <p class="sucFail" id="successFailureText" >Correct!/Wrong Answer!</p>
 
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="highscoreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Highscores</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalX">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modalBody">
+            <ul>
+              <li id="modal1">EMPTY</li>
+              <li id="modal2">EMPTY</li>
+              <li id="modal3">EMPTY</li>
+              <li id="modal4"></li>
+              <li id="modal5"></li>
+              <li id="modal6"></li>
+              <li id="modal7"></li>
+              <li id="modal8"></li>
+              <li id="modal9"></li>
+              <li id="modal10"></li>
+            </ul>
+          </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     
