@@ -42,6 +42,7 @@ var q_Btn4    = document.getElementById("questionBtn4");
 var q_SucFail = document.getElementById("successFailureText");
 var navTimer  = document.getElementById("navbarTimer");
 var endScore  = document.getElementById("endscreenScoreText");
+var entryBtn  = document.getElementById("initialEntryBtn");
 
 var q_Btn1Var = "";
 var q_Btn2Var = "";
@@ -51,6 +52,9 @@ var q_Btn4Var = "";
 
 score_Btn.addEventListener("click", function(){showModal();});
 start_Btn.addEventListener("click", function(){startQuiz();});
+// entryBtn.addEventListener("click", function(){initialBtnClicked();});
+
+
 
 q_Btn1.addEventListener("click", function(){nextQ(q_Btn1Var);});
 q_Btn2.addEventListener("click", function(){nextQ(q_Btn2Var);});
@@ -69,12 +73,12 @@ function closeModal () {
 }
 
 function reveal (section) {
-    console.log("ran reveal()");
+    // console.log("ran reveal()");
     section.style.display = "block";
 }
 
 function hide (section) {
-    console.log("ran hide()");
+    // console.log("ran hide()");
     section.style.display = "none";
 }
 
@@ -211,9 +215,11 @@ function isItHighscore (score) {
     navTimer.innerHTML = "Time: " + score;
     endScore.innerHTML = "You completed the quiz with a score of " + score;
 
+    entryBtn.addEventListener("click", function(){initialBtnClicked((document.getElementById("initialEntryBox").value),score);});
 }
 
 function startTimer() {
+    duration = 75;
 
     setInterval(function () {
         if (duration > 0) {
@@ -223,6 +229,170 @@ function startTimer() {
             navTimer.innerHTML = "Time: " + duration;
         }
     }, 1000);
+}
+
+function resetQuiz() {
+    qNum     = 0;
+    navTimer.innerHTML = "Time: 75";
+
+    hide(sect_end);
+    reveal(sect_start);
+
+}
+
+function initialBtnClicked(entry,score) {
+    addHighscore(entry,score);
+    showModal();
+    resetQuiz();
+}
+
+// function addHighscore(entry,score){
+//     console.log(entry +" " + score);
+
+//     // Original object
+//     var lastScoreObj = {"initials": entry, "score": score};
+
+//     // This is a JSON string that is fit
+//     // to be inserted into localStorage
+//     var lastScoreJSONString = JSON.stringify(lastScoreObj);
+
+//     // We can then save the string into localStorage
+//     localStorage.setItem("lastScore", lastScoreJSONString);
+
+//     // And if we were to *retrieve* it again,
+//     // we can do so, and then convert it back to an object
+//     // (Note that bertObjFromLS will be exactly the same as bertObj)
+//     var lastScoreJSONStringFromLS = localStorage.getItem("lastScore");
+//     var lastScoreObjFromLS = JSON.parse(lastScoreJSONStringFromLS);
+
+//     console.log(lastScoreObjFromLS);
+//     console.log(lastScoreObj);
+
+//     localStorage.setItem("modal1_Score", {"initials": entry, "score": score});
+
+//     reorderHighscores(lastScoreObj);
+
+// }
+
+function addHighscore(entry,score) {
+
+    console.log(entry +" " + score);
+
+    var lastScoreObj = {"initials": entry, "score": score};
+
+
+    // console.log(lastScore + "is lastScore");
+    // localStorage.setItem("modal1_Score", lastScore);
+
+    var modal1_ScoreNotParsed = localStorage.getItem("modal1_Score");
+    var modal1_ScoreParsed = JSON.parse(modal1_ScoreNotParsed);
+    // console.log("modal1_ScoreNotParsed is "+ modal1_ScoreNotParsed);
+    // console.log("modal1_Parsed[score]"+ modal1_Parsed["score"] );
+
+    var modal2_ScoreNotParsed = localStorage.getItem("modal2_Score");
+    var modal2_ScoreParsed = JSON.parse(modal2_ScoreNotParsed);
+
+    var modal3_ScoreNotParsed = localStorage.getItem("modal3_Score");
+    var modal3_ScoreParsed = JSON.parse(modal3_ScoreNotParsed);
+
+    var modal4_ScoreNotParsed = localStorage.getItem("modal4_Score");
+    var modal4_ScoreParsed = JSON.parse(modal4_ScoreNotParsed);
+
+    var modal5_ScoreNotParsed = localStorage.getItem("modal5_Score");
+    var modal5_ScoreParsed = JSON.parse(modal5_ScoreNotParsed);
+
+    var modal6_ScoreNotParsed = localStorage.getItem("modal6_Score");
+    var modal6_ScoreParsed = JSON.parse(6);
+
+    var modal7_ScoreNotParsed = localStorage.getItem("modal7_Score");
+    var modal7_ScoreParsed = JSON.parse(modal7_ScoreNotParsed);
+
+    var modal8_ScoreNotParsed = localStorage.getItem("modal8_Score");
+    var modal8_ScoreParsed = JSON.parse(modal8_ScoreNotParsed);
+
+    var modal9_ScoreNotParsed = localStorage.getItem("modal9_Score");
+    var modal9_ScoreParsed = JSON.parse(modal9_ScoreNotParsed);
+
+    var modal10_ScoreNotParsed = localStorage.getItem("modal10_Score");
+    var modal10_ScoreParsed = JSON.parse(modal10_ScoreNotParsed);
+
+    // var modal1_ScoreParsed = JSON.parse(modal1_ScoreNotParsed);
+    // console.log(modal1_ScoreParsed);
+
+    // var modal2_ScoreParsed = JSON.parse(localStorage.getItem("modal2_Score"));
+    // var modal3_ScoreParsed = JSON.parse(localStorage.getItem("modal3_Score"));
+    // var modal4_ScoreParsed = JSON.parse(localStorage.getItem("modal4_Score"));
+    // var modal5_ScoreParsed = JSON.parse(localStorage.getItem("modal5_Score"));
+    // var modal6_ScoreParsed = JSON.parse(localStorage.getItem("modal6_Score"));
+    // var modal7_ScoreParsed = JSON.parse(localStorage.getItem("modal7_Score"));
+    // var modal8_ScoreParsed = JSON.parse(localStorage.getItem("modal8_Score"));
+    // var modal9_ScoreParsed = JSON.parse(localStorage.getItem("modal9_Score"));
+    // var modal10_ScoreParsed = JSON.parse(localStorage.getItem("modal10_Score"));
+
+
+    if(modal1_ScoreNotParsed==null) {
+        // This is a JSON string that is fit
+        // to be inserted into localStorage
+        var lastScoreJSONString = JSON.stringify(lastScoreObj);
+
+        // We can then save the string into localStorage
+        localStorage.setItem("modal1_Score", lastScoreJSONString);
+
+        localStorage.setItem("modal1_Score", lastScore);
+        // console.log("parsed: "(JSON.parse(modal1_ScoreNotParsed)));
+        console.log("modal1_ScoreObjFromLS is null");
+    } else if (modal2_ScoreNotParsed==null) {
+        if (modal1_ScoreParsed["score"]<lastScoreObj["score"]) {
+            localStorage.setItem("modal1_Score", lastScoreObj);
+            localStorage.setItem("modal2_Score", modal1_ScoreParsed);
+
+            // console.log("last score is greater than modal1");
+            // console.log("modal1_ScoreParsed[score] is"+modal1_ScoreParsed["score"]);
+            // console.log("lastScoreObj[score] is"+lastScoreObj["score"]);
+
+        } else {
+            localStorage.setItem("modal2_Score", lastScoreObj);
+            // console.log("modal1_ScoreParsed[score] is"+modal1_ScoreParsed["score"]);
+            // console.log("lastScoreObj[score] is"+lastScoreObj["score"]);
+        }
+
+
+        console.log("modal2_ScoreObjFromLS is null");
+    // } else if (modal3_ScoreParsed==null) {
+    //     console.log("modal3_ScoreObjFromLS is null");
+    // } else if (modal4_ScoreParsed==null) {
+    //     console.log("modal4_ScoreObjFromLS is null");
+    // } else if (modal5_ScoreParsed==null) {
+    //     console.log("modal5_ScoreObjFromLS is null");
+    // } else if (modal6_ScoreParsed==null) {
+    //     console.log("modal6_ScoreObjFromLS is null");
+    // } else if (modal7_ScoreParsed==null) {
+    //     console.log("modal7_ScoreObjFromLS is null");
+    // } else if (modal8_ScoreParsed==null) {
+    //     console.log("modal8_ScoreObjFromLS is null");
+    // } else if (modal9_ScoreParsed==null) {
+    //     console.log("modal9_ScoreObjFromLS is null");
+    // } else if (modal10_ScoreParsed==null) {
+    //     console.log("modal10_ScoreObjFromLS is null");
+    } else {
+        console.log("not parsed " + modal1_ScoreNotParsed);
+        
+        console.log("parsed: "+(JSON.parse(modal1_ScoreNotParsed)));
+        console.log("modal10_ScoreObjFromLS is NOT null");
+    }
+ 
+        // var archive = {}, // Notice change here
+        //     keys = Object.keys(localStorage),
+        //     i = keys.length;
+    
+        // while ( i-- ) {
+        //     archive[ keys[i] ] = localStorage.getItem( keys[i] );
+        // }
+
+        // console.log("archive is "+ archive);
+    
+        // return archive;
+        
 }
 
 // function setScoreStorage(){
