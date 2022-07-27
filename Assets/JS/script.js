@@ -275,74 +275,74 @@ function addHighscore(entry,score) {
 
 }
 
-function testScores () {
-    const NO_OF_HIGH_SCORES = 10;
-    const HIGH_SCORES = 'highScores';
-    const highScoreString = localStorage.getItem(HIGH_SCORES);
-    const highScores = JSON.parse(highScoreString) ?? [];
-    // The nullish coalescing operator (??) is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand.
-    const lowestScore = highScores[NO_OF_HIGH_SCORES — 1]?.score ?? 0;
+// function testScores () {
+//     const NO_OF_HIGH_SCORES = 10;
+//     const HIGH_SCORES = 'highScores';
+//     const highScoreString = localStorage.getItem(HIGH_SCORES);
+//     const highScores = JSON.parse(highScoreString) ?? [];
+//     // The nullish coalescing operator (??) is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand.
+//     const lowestScore = highScores[NO_OF_HIGH_SCORES — 1]?.score ?? 0;
 
-    checkHighScore(account.score)
+//     checkHighScore(account.score)
 
-    const name = prompt(‘You got a high score! Enter name:’);
-    const newScore = { score, name };
-}
+//     const name = prompt(‘You got a high score! Enter name:’);
+//     const newScore = { score, name };
+// }
 
-function checkHighScore(score) {
-    const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
-    const lowestScore = highScores[NO_OF_HIGH_SCORES - 1]?.score ?? 0;
+// function checkHighScore(score) {
+//     const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
+//     const lowestScore = highScores[NO_OF_HIGH_SCORES - 1]?.score ?? 0;
     
-    if (score > lowestScore) {
-    saveHighScore(score, highScores); // TODO
-    showHighScores(); // TODO
-    }
-}
+//     if (score > lowestScore) {
+//     saveHighScore(score, highScores); // TODO
+//     showHighScores(); // TODO
+//     }
+// }
 
-function saveHighScore(score, highScores) {
-    const name = prompt('You got a highscore! Enter name:');
-    const newScore = { score, name };
+// function saveHighScore(score, highScores) {
+//     const name = prompt('You got a highscore! Enter name:');
+//     const newScore = { score, name };
     
-    // 1. Add to list
-    highScores.push(newScore);
+//     // 1. Add to list
+//     highScores.push(newScore);
   
-    // 2. Sort the list
-    highScores.sort((a, b) => b.score - a.score);
+//     // 2. Sort the list
+//     highScores.sort((a, b) => b.score - a.score);
     
-    // 3. Select new list
-    highScores.splice(NO_OF_HIGH_SCORES);
+//     // 3. Select new list
+//     highScores.splice(NO_OF_HIGH_SCORES);
     
-    // 4. Save to local storage
-    localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores));
+//     // 4. Save to local storage
+//     localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores));
 
-    highScores.map((score) => `<li>${score.score} — ${score.name}`);
+//     highScores.map((score) => `<li>${score.score} — ${score.name}`);
 
     
-    const highScoreList = document.getElementById(HIGH_SCORES);
+//     const highScoreList = document.getElementById(HIGH_SCORES);
 
-    highScoreList.innerHTML = highScores.map((score) => 
-    `<li>${score.score} - ${score.name}`
-    );
-  };
+//     highScoreList.innerHTML = highScores.map((score) => 
+//     `<li>${score.score} - ${score.name}`
+//     );
+//   };
 
-  function showHighScores() {
-    const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
-    const highScoreList = document.getElementById(HIGH_SCORES);
+//   function showHighScores() {
+//     const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
+//     const highScoreList = document.getElementById(HIGH_SCORES);
     
-    highScoreList.innerHTML = highScores
-      .map((score) => `<li>${score.score} - ${score.name}`)
-      .join('');
-  }
+//     highScoreList.innerHTML = highScores
+//       .map((score) => `<li>${score.score} - ${score.name}`)
+//       .join('');
+//   }
 
 
-// // Add data
-// localStorage.setItem('myCar', 'Tesla');
+// // // Add data
+// // localStorage.setItem('myCar', 'Tesla');
 
-// // Read data
-// const car = localStorage.getItem('myCar');
+// // // Read data
+// // const car = localStorage.getItem('myCar');
 
-// // Remove specific data
-// localStorage.removeItem('myCar');
+// // // Remove specific data
+// // localStorage.removeItem('myCar');
 
-// // Remove all data
-// localStorage.clear();
+// // // Remove all data
+// // localStorage.clear();

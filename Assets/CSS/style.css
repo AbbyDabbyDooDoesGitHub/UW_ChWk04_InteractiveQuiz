@@ -1,32 +1,32 @@
-/* Makes it so there's no underline under the hyperlink */
-/* a {
-    text-decoration: none;
-} */
-
+/* CENTERS THE HEADER */
 header {
   margin: auto;
 }
 
+/* GENERAL NAVBAR STYLING */
 .navbar {
   font-size: 20px;
   padding-right: 10px;
   padding-left: 10px;
-
 }
 
+/* CENTERS THE BODY */
 body {
   margin: auto;
   text-align: center;
 }
 
+/* ADDS PADDING UNDER H1 */
 h1 {
   padding-bottom: 10px;
 }
 
+/* ADDS MARGIN ABOVE START BTN */
 #startBtn {
   margin-top: 10px;
 }
 
+/* GENERAL STYLING FOR QUESTION CLASS */
 .question {
   margin: auto;
   text-align: center;
@@ -34,6 +34,7 @@ h1 {
   padding-right: 0;
 }
 
+/* THIS STYLES THE ANSWERS TO EACH QUESTION OF THE QUIZ */
 .questionBtn {
   padding: 0;
   margin:0;
@@ -46,6 +47,7 @@ h1 {
   padding-right: 10px;
 }
 
+/* THIS IS THE LINE ABOVE THE SUCFAIL TEXT */
 #divLine {
   margin: auto;
   margin-top: 10px;
@@ -56,38 +58,54 @@ h1 {
   align-self: auto;
 }
 
+/* ADD MARGIN ABOVE SUCFAIL TEXT */
 #successFailureText {
   margin-top: 10px;
 }
 
-#questionBlock {
-  display: none;
-}
-
-#sucFail {
-  display: none;
-}
-
+/* STYLES THE BOX WHERE YOU ENTER INITIALS */
 #initialEntryBox {
   display: inline-block;
   width:250px;
 }
 
+/* THIS IS THE DIV CONTAINING THE ENTRY BOX AND BUTTON */
 #initialEntryBoxDiv  {
   margin: auto;
   margin-top: 10px;
   display: inline-block;
 }
 
-#endscreenH1 {
-  padding-bottom: 10px;
-}
-
+/* GENERAL STYLING ON THE INITIAL ENTRY BTN */
 #initialEntryBtn {
   margin-top: -4px;
   display: inline-block;
 }
 
+/* MAKE HIGHSCORE BTN SAME STYLE AS TIMER */
+#scoreBtn {
+  font-size: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: rgba(240, 248, 255, 0);
+  border-color: rgba(240, 248, 255, 0);
+  color: black;
+  font-weight:500;
+}
+
+/* REDUCE OPACITY OF SCORE BTN ON HOVER */
+#scoreBtn:hover {
+  color:rgba(0, 0, 0, 0.6);
+}
+
+
+/* HIDE SECTIONS - ALL BUT START SCREEN */
+#questionBlock {
+  display: none;
+}
+#sucFail {
+  display: none;
+}
 #endscreen {
   display: none;
 }
