@@ -4,10 +4,10 @@
 Build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
 
 
-Link to Web App: <!-- LINK TO DEPLOYMENT HERE -->
+Link to Web App: https://abbydabbydoodoesgithub.github.io/UW_ChWk04_InteractiveQuiz/
 
 App Preview:
-Replace with path to screenshot   ![My Password Generator Screenshot](./Assets/Images/MyCodingQuizScreenShot.PNG "My Password Generator Screenshot")
+![My Coding Quiz Screenshot](./Assets/Images/MyCodingQuizScreenShot.PNG "My Coding Quiz Screenshot")
 
 ## Notes
 
