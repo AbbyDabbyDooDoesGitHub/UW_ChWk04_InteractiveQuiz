@@ -115,9 +115,3 @@ h1 {
 #endscreen {
   display: none;
 }
-
-/* Media Query Example */
-/* @media screen and (max-width: 992px) {
-  h2 {
-      font-size: 200%;
-  } */

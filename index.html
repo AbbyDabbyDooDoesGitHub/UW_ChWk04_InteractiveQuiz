@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- REPLACE W/NEW PROJECT TAB TITLE -->
     <title>Coding Quiz</title>
 
     <link rel="stylesheet" href="./Assets/CSS/reset.css">
@@ -19,18 +18,18 @@
 
   </head>
 
-<!-- class for display none d-none -->
-
   <header class="navbar">
-    <!-- Button trigger modal -->
+    <!-- HIGHSCORE MODAL TRIGGER -->
     <button type="button" class="btn btn-primary" id="scoreBtn" data-toggle="modal" data-target="#exampleModalCenter">
       View Highscores
     </button>
     
+    <!-- TIMER DISPLAY -->
     <h3 class="navbar" id="navbarTimer">Time: 75</h3>
   </header>
 
   <body>
+    <!-- HOMEPAGE/START SCREEN -->
     <div class="start">
       <h1 class="start">Coding Quiz</h1>
 
@@ -40,36 +39,38 @@
 
     </div>
 
+    <!-- THE QUESTION/ANSWER QUIZ LAYOUT -->
     <div id="questionBlock">
+      <!-- QUESTION -->
       <h1 id="questionH1" class="question">Example Question?</h1>
 
+      <!-- ANSWER OPTIONS -->
       <ul id="qList" class="question">
         <li class="question">
           <button type="button" id="questionBtn1" class="btn question questionBtn btn-primary">1. Example Answer</button>
         </li>
-
         <li class="question">
           <button type="button" id="questionBtn2" class="btn question questionBtn btn-primary">2. Example Answer</button>
         </li>
-
         <li class="question">
           <button type="button" id="questionBtn3" class="btn question questionBtn btn-primary">3. Example Answer</button>
         </li>
-
         <li class="question">
           <button type="button" id="questionBtn4" class="btn question questionBtn btn-primary">4. Example Answer</button>
         </li>
-  
       </ul>
 
     </div>
 
+    <!-- ENDSCREEN -->
     <div id="endscreen">
 
       <h1 id="endscreenH1">All Done!</h1>
 
+      <!-- THIS MESSAGE WILL BE COMPLETED WITH JAVASCRIPT -->
       <p id="endscreenScoreText">Your score is </p>
 
+      <!-- INITIAL ENTRY BOX FOR HIGHSCORE -->
       <div id="initialEntryBoxDiv" >
         <input id="initialEntryBox" class="form-control" type="search" placeholder="Initials Here (3 Letter Max)" aria-label="Search">
 
@@ -77,6 +78,7 @@
 
       </div>
 
+      <!-- BUTTON FOR NO HIGHSCORE -->
       <div id="tryAgainDiv" >
         <button type="button" id="tryAgainBtn" class="btn btn-primary">Try Again</button>
 
@@ -111,16 +113,6 @@
       </div>
     </div>
 
-    
-    
-
-
-
-
-
-
-
-
     <!-- LINK JQUERY SCRIPT -->
     <script
       src="https://code.jquery.com/jquery-3.2.1.js"
@@ -133,9 +125,6 @@
 
     <!-- LINK MAIN JAVASCRIPT -->
     <script type="text/javascript" src="./Assets/JS/script.js"></script>
-
-    <!-- LINK OPTIONAL START JS -->
-    <!-- <script src="./Assets/JS/start.js"></script> -->
     
   </body>
 
