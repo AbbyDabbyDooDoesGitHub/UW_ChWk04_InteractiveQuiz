@@ -1,8 +1,7 @@
 // alert('JS File is connected');
 
-var qNum     = 0;
-var duration = 75;
-
+// GLOBAL VARIABLES--------------------------------------------------------------------
+// CREATE QUESTIIONS AND ANSWERS
 var q1_H    = "Question 1 example question wow so question-y?";
 var q1_A    = ["answer1","answer2","answer3","answer4"];
 var q1_true = "answer1";
@@ -19,6 +18,7 @@ var q5_H    = "Question 5 example question wow so question-y?";
 var q5_A    = ["answer1","answer2","answer3","answer4"];
 var q5_true = "answer1";
 
+// MISC GLOBAL VARIABLES FOR DOC LOCATIONS
 var sect_start   = document.querySelector(".start");
 var sect_sucFail = document.getElementById("sucFail");
 var sect_end     = document.getElementById("endscreen");
@@ -38,23 +38,43 @@ var q_SucFail = document.getElementById("successFailureText");
 var navTimer  = document.getElementById("navbarTimer");
 var endScore  = document.getElementById("endscreenScoreText");
 var entryBtn  = document.getElementById("initialEntryBtn");
+var againBtn  = document.getElementById("tryAgainBtn");
 
+// GLOBAL VARIABLES FOR ANSWER BUTTONS
 var q_Btn1Var = "";
 var q_Btn2Var = "";
 var q_Btn3Var = "";
 var q_Btn4Var = "";
 
-// EVENT LISTENERS FOR BUTTONS
+// GLOBAL VARIABLES FOR TIMER
+var qNum     = 0;
+var duration = 75;
+var myInterval;
+var isHighscore = true;
+// var lastScore;
+var score;
+
+// // GLOBAL VARIABLES FOR LOCAL STORAGE STUFF
+// const highScoreString = localStorage.getItem("highScores");
+// const highScores = JSON.parse(highScoreString) ?? [];
+// // The nullish coalescing operator (??) is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand.
+
+// EVENT LISTENERS FOR BUTTONS---------------------------------------------------------
 score_Btn.addEventListener("click", function(){showModal();});
 start_Btn.addEventListener("click", function(){startQuiz();});
-// entryBtn.addEventListener("click", function(){initialBtnClicked();});
+entryBtn.addEventListener("click", function(){validateEntry();});
+againBtn.addEventListener("click", function(){resetQuiz();});
 q_Btn1.addEventListener("click", function(){nextQ(q_Btn1Var);});
 q_Btn2.addEventListener("click", function(){nextQ(q_Btn2Var);});
 q_Btn3.addEventListener("click", function(){nextQ(q_Btn3Var);});
 q_Btn4.addEventListener("click", function(){nextQ(q_Btn4Var);});
 
+// MODAL STUFF-------------------------------------------------------------------------
 // FUNCTION TO SHOW MODAL
 function showModal () {
+    // update highscores from local storage
+    showHighScores()
+
     $('#highscoreModal').modal('show');
     close_Btn.addEventListener("click", function(){closeModal();});
 }
@@ -64,6 +84,7 @@ function closeModal () {
     $('#highscoreModal').modal('hide');
 }
 
+// SWITCH BETWEEN "PAGES"--------------------------------------------------------------
 // FUNCTION TO REVEAL BY SECTION (CLASS)
 function reveal (section) {
     // console.log("ran reveal()");
@@ -76,6 +97,7 @@ function hide (section) {
     section.style.display = "none";
 }
 
+// QUIZ SECTION------------------------------------------------------------------------
 // FUNCTION TO SHUFFLE AN ARRAY (FOR QUESTION ANSWER ORDER)
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
@@ -92,6 +114,22 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+// FUNCTION TO RUN AT START OF QUIZ
+function startQuiz() {
+    // console.log("start quiz btn clicked");
+    // console.log("Array:" + q1_A + "   A is " + q1_true);
+
+    // HIDE START SECT AND REVEAL QUIZ SECT
+    hide(sect_start);
+    reveal(q_Block);
+
+    // CHANGE QUESTION TO FIRST Q
+    generateQuestion(q1_H,q1_A);
+
+    // START TIMER FOR QUIZ
+    startTimer();
 }
 
 // GENERATE QUESTIONS FOR QUIZ, REORDER THE ANSWERS, CHANGE TEXT
@@ -120,23 +158,6 @@ function generateQuestion (q_question,q_answerArray) {
     qNum = tempQNum;
     
     // console.log("qNum is "+qNum);
-
-}
-
-// FUNCTION TO RUN AT START OF QUIZ
-function startQuiz() {
-    // console.log("start quiz btn clicked");
-    // console.log("Array:" + q1_A + "   A is " + q1_true);
-
-    // HIDE START SECT AND REVEAL QUIZ SECT
-    hide(sect_start);
-    reveal(q_Block);
-
-    // CHANGE QUESTION TO FIRST Q
-    generateQuestion(q1_H,q1_A);
-
-    // START TIMER FOR QUIZ
-    startTimer();
 }
 
 // CHANGE Q'S IN QUIZ TO 2,3,4,5,ENDSCREEN
@@ -165,7 +186,7 @@ function nextQ(answerBtn) {
         reveal(sect_end);
 
         // DETERMINE IF IT'S A HIGH SCORE AND LOG SCORE
-        isItHighscore (duration);
+        finalizeScore ();
 
     } else {
         console.log("ERROR: qNum is " + qNum);
@@ -174,14 +195,6 @@ function nextQ(answerBtn) {
 
 // DETERMINE IF THE ANSWER WAS CORRECT
 function verifyAnswer (answerBtn,qN_true) {
-
-    // console.log("answerBtn is "+answerBtn);
-    // console.log("qN_true is "+qN_true);
-    
-    // console.log("q_Btn1Var is "+q_Btn1Var);
-    // console.log("q_Btn2Var is "+q_Btn2Var);
-    // console.log("q_Btn3Var is "+q_Btn3Var);
-    // console.log("q_Btn4Var is "+q_Btn4Var);
 
     if (answerBtn===qN_true) {
         // CHANGE TEXT FOR CORRECT ANSWER
@@ -212,25 +225,11 @@ function verifyAnswer (answerBtn,qN_true) {
     }
 }
 
+// RELATING TO TIME AND THE TIMER------------------------------------------------------
 // APPLY TIME PENALTY OF 10 SECONDS
 function applyTimePenalty () {
     var tempDur = duration - 10;
     duration = tempDur;
-}
-
-// DETERMINE IF IT'S A HIGH SCORE, GENERATE TEXT FOR SCORE, ADD EVENT LISTENER TO ENTRY BUTTON
-function isItHighscore (score) {
-    // SET DURATION TO 0 TO END COUNTDOWN FUNCTION
-    duration = 0;
-
-    // REPLACE TIMER TEXT WITH THE SCORE ACHIEVED
-    navTimer.innerHTML = "Time: " + score;
-
-    // TIME ACHIEVED TEXT ABOVE INITIAL BOX
-    endScore.innerHTML = "You completed the quiz with a score of " + score;
-
-    // ADD EVENT LISTENER TO ENTRY BUTTON
-    entryBtn.addEventListener("click", function(){initialBtnClicked((document.getElementById("initialEntryBox").value),score);});
 }
 
 // START TIMER FOR QUIZ
@@ -238,16 +237,28 @@ function startTimer() {
     // RESET DURATION TO 75
     duration = 75;
 
-    // REDUCE BY 1 EVERY SECOND AND PRINT TO TIMER
-    setInterval(function () {
-        if (duration > 0) {
-            var tempDur = duration - 1;
-            duration = tempDur;
-
-            navTimer.innerHTML = "Time: " + duration;
-        }
-    }, 1000);
+    // REPEAT ONCE A SECOND
+    myInterval = setInterval(myTimer, 1000);
 }
+
+// REDUCE BY 1 AND PRINT TO TIMER
+function myTimer() {
+    if (duration > 0) {
+        var tempDur = duration - 1;
+        duration = tempDur;
+
+        navTimer.innerHTML = "Time: " + duration;
+    }
+}
+
+function stopTimer() {
+    // timerVar = 0;
+    clearInterval(myInterval);
+}
+
+// ENDSCREEN AND HIGHSCORE LOCAL STORAGE-----------------------------------------------
+// UN-COMMENT OUR BELOW TO CLEAR OUT LOCAL STORAGE IMMEDIATELY 
+// localStorage.clear();
 
 // RESET QUIZ
 function resetQuiz() {
@@ -262,78 +273,132 @@ function resetQuiz() {
     reveal(sect_start);
 }
 
-// WHEN THE INITIAL ENTRY BUTTON IS CLICKED, ADD SCORE TO LOCAL STORAGE, SHOW HIGHSCORE MODAL,RESET QUIZ
-function initialBtnClicked(entry,score) {
-    addHighscore(entry,score);
-    showModal();
-    resetQuiz();
+// DETERMINE IF IT'S A HIGH SCORE, GENERATE TEXT FOR SCORE, ADD EVENT LISTENER TO ENTRY BUTTON
+function finalizeScore () {
+    // SET DURATION TO 0 TO END COUNTDOWN FUNCTION
+    score = duration;
+    duration = 0;
+    stopTimer();
+
+    // REPLACE TIMER TEXT WITH THE SCORE ACHIEVED
+    navTimer.innerHTML = "Time: " + score;
+
+    testScores ();
 }
 
-// ADD SCORE TO LOCAL STORAGE
-function addHighscore(entry,score) {
-    localStorage.clear();
+// TEST IF THE SCORE IS HIGHER THAN THE LOWEST SAVED HIGHSCORE AND CHANGE OPTIONS ACCORDINGLY
+function testScores () {
+    // const NO_OF_HIGH_SCORES = 10;
 
+    const highScoreString = localStorage.getItem("highScores");
+    const highScores = JSON.parse(highScoreString) ?? [];
+
+    var posLowNum = highScores[9];
+    var lowestScore = 0;
+    console.log("posLowNum_score is "+posLowNum_score);
+
+    if (posLowNum == null) {
+        lowestScore = 0;
+        console.log("lowestScore is"+ lowestScore);
+    } else {
+        var posLowNum_score = posLowNum["score"];
+        
+        lowestScore = posLowNum_score;
+        console.log("lowestScore is "+lowestScore);
+    }
+
+    if (score > lowestScore) {
+        isHighscore = true;
+
+        // TIME ACHIEVED TEXT ABOVE INITIAL BOX
+        endScore.innerHTML = "New highscore! You completed the quiz with a score of " + score + "!<br>Enter your initials to save your score to the highscore list.";
+
+        // // REVEAL INITIAL BOX
+        reveal(document.getElementById("initialEntryBoxDiv"));
+        hide(document.getElementById("tryAgainDiv"));
+        
+    } else {
+        isHighscore = false;
+
+        // // HIDE INITIAL BOX
+        // hide(document.getElementById("initialEntryBox"));
+
+        // TIME ACHIEVED TEXT ABOVE INITIAL BOX
+        endScore.innerHTML = "You completed the quiz with a score of " + score + ".<br>Try again for a score higher than "+lowestScore+" to make the highscore list!";
+
+        hide(document.getElementById("initialEntryBoxDiv"));
+        reveal(document.getElementById("tryAgainDiv"));
+
+    }
 }
 
-// function testScores () {
-//     const NO_OF_HIGH_SCORES = 10;
-//     const HIGH_SCORES = 'highScores';
-//     const highScoreString = localStorage.getItem(HIGH_SCORES);
-//     const highScores = JSON.parse(highScoreString) ?? [];
-//     // The nullish coalescing operator (??) is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand.
-//     const lowestScore = highScores[NO_OF_HIGH_SCORES — 1]?.score ?? 0;
-
-//     checkHighScore(account.score)
-
-//     const name = prompt(‘You got a high score! Enter name:’);
-//     const newScore = { score, name };
-// }
-
-// function checkHighScore(score) {
-//     const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
-//     const lowestScore = highScores[NO_OF_HIGH_SCORES - 1]?.score ?? 0;
+// SAVE HIGHSCORE TO LOCAL STORAGE
+function saveHighScore(entry) {
+    newScore = { score, entry };
     
-//     if (score > lowestScore) {
-//     saveHighScore(score, highScores); // TODO
-//     showHighScores(); // TODO
-//     }
-// }
-
-// function saveHighScore(score, highScores) {
-//     const name = prompt('You got a highscore! Enter name:');
-//     const newScore = { score, name };
-    
-//     // 1. Add to list
-//     highScores.push(newScore);
+    // 1. Add to list
+    highScores.push(newScore);
   
-//     // 2. Sort the list
-//     highScores.sort((a, b) => b.score - a.score);
+    // 2. Sort the list
+    highScores.sort((a, b) => b.score - a.score);
     
-//     // 3. Select new list
-//     highScores.splice(NO_OF_HIGH_SCORES);
+    // 3. Select new list
+    highScores.splice(10);
     
-//     // 4. Save to local storage
-//     localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores));
+    // 4. Save to local storage
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 
-//     highScores.map((score) => `<li>${score.score} — ${score.name}`);
+    resetQuiz();
+    showModal()
+};
 
+function showHighScores() {
+    const highScores = JSON.parse(localStorage.getItem("highScores")) ?? [];
+    const highScoreList = document.getElementById("highScores");
     
-//     const highScoreList = document.getElementById(HIGH_SCORES);
+    highScoreList.innerHTML = highScores
+      .map((score) => `<li>${score.score} - ${score.entry}`)
+      .join('');
+}
 
-//     highScoreList.innerHTML = highScores.map((score) => 
-//     `<li>${score.score} - ${score.name}`
-//     );
-//   };
+// VALIDATE INITIAL ENTRY--------------------------------------------------------------
 
-//   function showHighScores() {
-//     const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
-//     const highScoreList = document.getElementById(HIGH_SCORES);
-    
-//     highScoreList.innerHTML = highScores
-//       .map((score) => `<li>${score.score} - ${score.name}`)
-//       .join('');
-//   }
+function validateEntry() {
+    // const highScores = JSON.parse(localStorage.getItem("highScores")) ?? [];
+    // const highScoreList = document.getElementById("highScores");
 
+    var entry = document.getElementById("initialEntryBox").value;
+    console.log("entry is "+entry);
+    saveHighScore(box);
+    saveHighScore(entry);
+    resetQuiz();
+
+    // if (box.length === 0) {
+    //     if (confirm("Would you like to proceed without entering initials?")) {
+    //         entry = "UNK";
+    //         entry_s = entry.stringify;
+    //         console.log("entry is "+entry);
+    //         resetQuiz();
+            
+    //         if (isHighscore == true) {
+    //           saveHighScore(entry_s);
+              
+      
+    //         }
+    //       } else {
+    //         return;
+    //       } 
+    // } else if (box.length > 3) {
+    //     alert("Initial entries must be no more than 3 characters.");
+    //     return;
+    // } else {
+    //     entry = box;
+    //     resetQuiz();
+    //     saveHighScore(entry);
+    // }
+
+
+}
 
 // // // Add data
 // // localStorage.setItem('myCar', 'Tesla');

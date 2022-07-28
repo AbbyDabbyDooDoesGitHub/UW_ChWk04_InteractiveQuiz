@@ -26,12 +26,6 @@
     <button type="button" class="btn btn-primary" id="scoreBtn" data-toggle="modal" data-target="#exampleModalCenter">
       View Highscores
     </button>
-
-
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#highscoreModal">
-      Launch demo modal
-    </button>
-    <a><h3 class="navbar" id="highscoreBtn" >View Highscores</h3></a> -->
     
     <h3 class="navbar" id="navbarTimer">Time: 75</h3>
   </header>
@@ -83,8 +77,15 @@
 
       </div>
 
+      <div id="tryAgainDiv" >
+        <button type="button" id="tryAgainBtn" class="btn btn-primary">Try Again</button>
+
+      </div>
+
     </div>
 
+
+    <!-- SUCCESS/FAILURE INDICATOR AND LINE -->
     <div id="sucFail">
       <div class="sucFail" id="divLine"></div>
 
@@ -92,7 +93,7 @@
 
     </div>
 
-    <!-- Modal -->
+    <!-- HIGHSCORE MODAL -->
     <div class="modal fade" id="highscoreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -103,7 +104,7 @@
             </button>
           </div>
           <div class="modalBody">
-            <ol id=”highScores”></ol>
+            <ol id="highScores">test</ol>
             <!-- <ul>
               <li id="modal1">EMPTY</li>
               <li id="modal2">EMPTY</li>
