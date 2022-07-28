@@ -55,8 +55,12 @@ var isHighscore = true;
 var score;
 
 // // GLOBAL VARIABLES FOR LOCAL STORAGE STUFF
-// const highScoreString = localStorage.getItem("highScores");
+const HIGH_SCORES = 'highScores';
+const highScoreString = localStorage.getItem(HIGH_SCORES);
+console.log(highScoreString);
 // const highScores = JSON.parse(highScoreString) ?? [];
+const highScores = JSON.parse.highScoreString ?? [];
+console.log(highScores);
 // // The nullish coalescing operator (??) is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand.
 
 // EVENT LISTENERS FOR BUTTONS---------------------------------------------------------
@@ -290,8 +294,8 @@ function finalizeScore () {
 function testScores () {
     // const NO_OF_HIGH_SCORES = 10;
 
-    const highScoreString = localStorage.getItem("highScores");
-    const highScores = JSON.parse(highScoreString) ?? [];
+    // const highScoreString = localStorage.getItem("highScores");
+    // const highScores = JSON.parse(highScoreString) ?? [];
 
     var posLowNum = highScores[9];
     var lowestScore = 0;
@@ -353,7 +357,7 @@ function saveHighScore(entry) {
 };
 
 function showHighScores() {
-    const highScores = JSON.parse(localStorage.getItem("highScores")) ?? [];
+    // const highScores = JSON.parse(localStorage.getItem("highScores")) ?? [];
     const highScoreList = document.getElementById("highScores");
     
     highScoreList.innerHTML = highScores
@@ -369,9 +373,34 @@ function validateEntry() {
 
     var entry = document.getElementById("initialEntryBox").value;
     console.log("entry is "+entry);
-    saveHighScore(box);
-    saveHighScore(entry);
-    resetQuiz();
+
+    if (entry.length === 0) {
+        if (confirm("Would you like to proceed without entering initials?")) {
+            entry = "UNK";
+            console.log("entry is "+entry);
+            saveHighScore(entry);
+            resetQuiz();
+                    
+            if (isHighscore == true) {
+            saveHighScore(entry_s);
+            }
+        } else {
+            return;
+        } 
+
+    } else if (entry.length > 3) {
+        alert("Initials can be no longer than 3 characters.");
+        return;
+    } else {
+        var entry_upper = entry.toUpperCase();
+        saveHighScore(entry_upper);
+        resetQuiz();
+
+    }
+
+
+
+
 
     // if (box.length === 0) {
     //     if (confirm("Would you like to proceed without entering initials?")) {
