@@ -2,21 +2,21 @@
 
 // GLOBAL VARIABLES--------------------------------------------------------------------
 // CREATE QUESTIIONS AND ANSWERS
-var q1_H    = "Question 1 example question wow so question-y?";
-var q1_A    = ["answer1","answer2","answer3","answer4"];
-var q1_true = "answer1";
-var q2_H    = "Question 2 example question wow so question-y?";
-var q2_A    = ["answer1","answer2","answer3","answer4"];
-var q2_true = "answer1";
-var q3_H    = "Question 3 example question wow so question-y?";
-var q3_A    = ["answer1","answer2","answer3","answer4"];
-var q3_true = "answer1";
-var q4_H    = "Question 4 example question wow so question-y?";
-var q4_A    = ["answer1","answer2","answer3","answer4"];
-var q4_true = "answer1";
-var q5_H    = "Question 5 example question wow so question-y?";
-var q5_A    = ["answer1","answer2","answer3","answer4"];
-var q5_true = "answer1";
+var q1_H    = "Commonly used data types do not include";
+var q1_A    = ["strings","booleans","alerts","numbers"];
+var q1_true = "alerts";
+var q2_H    = "The condition in an if / else statement is enclosed within";
+var q2_A    = ["quotes","curly brackets","parentheses","square brackets"];
+var q2_true = "parentheses";
+var q3_H    = "Arrays in JavaScript can be used to store";
+var q3_A    = ["numbers and strings","other arrays","booleans","all of these"];
+var q3_true = "all of these";
+var q4_H    = "String values must be enclosed within ____ when being assigned to variables.";
+var q4_A    = ["commas","curly brackets","quotes","parentheses"];
+var q4_true = "quotes";
+var q5_H    = "A very useful tool used during development and debugging for printing content to the debugger is";
+var q5_A    = ["JavaScript","terminal/bash","for loops","console.log"];
+var q5_true = "console.log";
 
 // MISC GLOBAL VARIABLES FOR DOC LOCATIONS
 var sect_start   = document.querySelector(".start");
@@ -145,10 +145,10 @@ function generateQuestion (q_question,q_answerArray) {
 
     q_H1.innerHTML   = q_question;
 
-    q_Btn1.innerHTML = q_answerArray[0];
-    q_Btn2.innerHTML = q_answerArray[1];
-    q_Btn3.innerHTML = q_answerArray[2];
-    q_Btn4.innerHTML = q_answerArray[3];
+    q_Btn1.innerHTML = "1. " + q_answerArray[0];
+    q_Btn2.innerHTML = "2. " + q_answerArray[1];
+    q_Btn3.innerHTML = "3. " + q_answerArray[2];
+    q_Btn4.innerHTML = "4. " + q_answerArray[3];
 
     q_Btn1Var = q_answerArray[0];
     q_Btn2Var = q_answerArray[1];
