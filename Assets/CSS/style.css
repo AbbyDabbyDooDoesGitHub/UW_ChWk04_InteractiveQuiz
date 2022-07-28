@@ -93,6 +93,12 @@ h1 {
   font-weight:500;
 }
 
+/* GETS RID OF BACKGROUND ON MODAL "X" BUTTON */
+.close {
+  background-color: rgba(240, 248, 255, 0);
+  border-color: rgba(240, 248, 255, 0);
+}
+
 /* REDUCE OPACITY OF SCORE BTN ON HOVER */
 #scoreBtn:hover {
   color:rgba(0, 0, 0, 0.6);

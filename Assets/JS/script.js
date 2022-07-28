@@ -292,10 +292,6 @@ function finalizeScore () {
 
 // TEST IF THE SCORE IS HIGHER THAN THE LOWEST SAVED HIGHSCORE AND CHANGE OPTIONS ACCORDINGLY
 function testScores () {
-    // const NO_OF_HIGH_SCORES = 10;
-
-    // const highScoreString = localStorage.getItem("highScores");
-    // const highScores = JSON.parse(highScoreString) ?? [];
 
     var posLowNum = highScores[9];
     var lowestScore = 0;
@@ -363,69 +359,41 @@ function showHighScores() {
     highScoreList.innerHTML = highScores
       .map((score) => `<li>${score.score} - ${score.entry}`)
       .join('');
+
+    if (highScoreList.innerHTML.length === 0){
+        highScoreList.innerHTML = "No Highscores Yet<br>Give the Quiz a Try First!";
+    }
 }
 
 // VALIDATE INITIAL ENTRY--------------------------------------------------------------
 
 function validateEntry() {
-    // const highScores = JSON.parse(localStorage.getItem("highScores")) ?? [];
-    // const highScoreList = document.getElementById("highScores");
 
     var entry = document.getElementById("initialEntryBox").value;
     console.log("entry is "+entry);
 
+    // CHECKS IF INITIAL BOX IS BLANK
     if (entry.length === 0) {
+        // CHECKS IF PERSON MEANT TO CONTINUE WITHOUT ENTERING INITIALS
         if (confirm("Would you like to proceed without entering initials?")) {
-            entry = "UNK";
+            entry = "???";
             console.log("entry is "+entry);
             saveHighScore(entry);
             resetQuiz();
-                    
-            if (isHighscore == true) {
-            saveHighScore(entry_s);
-            }
         } else {
             return;
         } 
 
+    // LIMITS CHARACTERS TO 3 FOR AESTHETICS
     } else if (entry.length > 3) {
         alert("Initials can be no longer than 3 characters.");
         return;
     } else {
+        // CAPITALIZES ENTRIES FOR UNIFORMITY
         var entry_upper = entry.toUpperCase();
         saveHighScore(entry_upper);
         resetQuiz();
-
     }
-
-
-
-
-
-    // if (box.length === 0) {
-    //     if (confirm("Would you like to proceed without entering initials?")) {
-    //         entry = "UNK";
-    //         entry_s = entry.stringify;
-    //         console.log("entry is "+entry);
-    //         resetQuiz();
-            
-    //         if (isHighscore == true) {
-    //           saveHighScore(entry_s);
-              
-      
-    //         }
-    //       } else {
-    //         return;
-    //       } 
-    // } else if (box.length > 3) {
-    //     alert("Initial entries must be no more than 3 characters.");
-    //     return;
-    // } else {
-    //     entry = box;
-    //     resetQuiz();
-    //     saveHighScore(entry);
-    // }
-
 
 }
 
