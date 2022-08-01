@@ -1,6 +1,7 @@
 // alert('JS File is connected');
 
 // GLOBAL VARIABLES--------------------------------------------------------------------
+
 // CREATE QUESTIIONS AND ANSWERS
 var q1_H    = "Commonly used data types do not include";
 var q1_A    = ["strings","booleans","alerts","numbers"];
@@ -54,14 +55,13 @@ var isHighscore = true;
 // var lastScore;
 var score;
 
-// // GLOBAL VARIABLES FOR LOCAL STORAGE STUFF
+// GLOBAL VARIABLES FOR LOCAL STORAGE STUFF
 const HIGH_SCORES = 'highScores';
 const highScoreString = localStorage.getItem(HIGH_SCORES);
-console.log(highScoreString);
-// const highScores = JSON.parse(highScoreString) ?? [];
+// console.log(highScoreString);
 const highScores = JSON.parse.highScoreString ?? [];
-console.log(highScores);
-// // The nullish coalescing operator (??) is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand.
+// The nullish coalescing operator (??) is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand.
+// console.log(highScores);
 
 // EVENT LISTENERS FOR BUTTONS---------------------------------------------------------
 score_Btn.addEventListener("click", function(){showModal();});
@@ -74,6 +74,7 @@ q_Btn3.addEventListener("click", function(){nextQ(q_Btn3Var);});
 q_Btn4.addEventListener("click", function(){nextQ(q_Btn4Var);});
 
 // MODAL STUFF-------------------------------------------------------------------------
+
 // FUNCTION TO SHOW MODAL
 function showModal () {
     // update highscores from local storage
@@ -89,6 +90,7 @@ function closeModal () {
 }
 
 // SWITCH BETWEEN "PAGES"--------------------------------------------------------------
+
 // FUNCTION TO REVEAL BY SECTION (CLASS)
 function reveal (section) {
     // console.log("ran reveal()");
@@ -102,6 +104,7 @@ function hide (section) {
 }
 
 // QUIZ SECTION------------------------------------------------------------------------
+
 // FUNCTION TO SHUFFLE AN ARRAY (FOR QUESTION ANSWER ORDER)
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
@@ -230,6 +233,7 @@ function verifyAnswer (answerBtn,qN_true) {
 }
 
 // RELATING TO TIME AND THE TIMER------------------------------------------------------
+
 // APPLY TIME PENALTY OF 10 SECONDS
 function applyTimePenalty () {
     var tempDur = duration - 10;
@@ -261,6 +265,7 @@ function stopTimer() {
 }
 
 // ENDSCREEN AND HIGHSCORE LOCAL STORAGE-----------------------------------------------
+
 // UN-COMMENT OUR BELOW TO CLEAR OUT LOCAL STORAGE IMMEDIATELY 
 // localStorage.clear();
 
@@ -295,16 +300,16 @@ function testScores () {
 
     var posLowNum = highScores[9];
     var lowestScore = 0;
-    console.log("posLowNum_score is "+posLowNum_score);
+    // console.log("posLowNum_score is "+posLowNum_score);
 
     if (posLowNum == null) {
         lowestScore = 0;
-        console.log("lowestScore is"+ lowestScore);
+        // console.log("lowestScore is"+ lowestScore);
     } else {
         var posLowNum_score = posLowNum["score"];
         
         lowestScore = posLowNum_score;
-        console.log("lowestScore is "+lowestScore);
+        // console.log("lowestScore is "+lowestScore);
     }
 
     if (score > lowestScore) {
@@ -313,19 +318,17 @@ function testScores () {
         // TIME ACHIEVED TEXT ABOVE INITIAL BOX
         endScore.innerHTML = "New highscore! You completed the quiz with a score of " + score + "!<br>Enter your initials to save your score to the highscore list.";
 
-        // // REVEAL INITIAL BOX
+        // // REVEAL INITIAL BOX AND HIDE TRY AGAIN BTN
         reveal(document.getElementById("initialEntryBoxDiv"));
         hide(document.getElementById("tryAgainDiv"));
         
     } else {
         isHighscore = false;
 
-        // // HIDE INITIAL BOX
-        // hide(document.getElementById("initialEntryBox"));
-
         // TIME ACHIEVED TEXT ABOVE INITIAL BOX
         endScore.innerHTML = "You completed the quiz with a score of " + score + ".<br>Try again for a score higher than "+lowestScore+" to make the highscore list!";
 
+        // HIDE INITIAL BOX AND REVEAL TRY AGAIN BTN
         hide(document.getElementById("initialEntryBoxDiv"));
         reveal(document.getElementById("tryAgainDiv"));
 
@@ -334,26 +337,74 @@ function testScores () {
 
 // SAVE HIGHSCORE TO LOCAL STORAGE
 function saveHighScore(entry) {
+    // newScore = [{"score":score,"entry":entry}];
     newScore = { score, entry };
+    tempArray = localStorage.getItem("highScores")??[];
+    tempArray = JSON.parse(tempArray);
+    newArray = [];
+    // tempArray1 = JSON.stringify(tempArray[0]);
+
+    // console.log("START OF saveHighScore() FUNCTION tempArray[0] is "+ tempArray[0]);
+    // console.log("START OF saveHighScore() FUNCTION tempArray[0] is "+ tempArray1);
+
+    if (tempArray[0] == null) {
+        newArray = [JSON.stringify(newScore)];
+    } else if (tempArray[1] == null) {
+        newArray = [JSON.stringify(tempArray[0]),JSON.stringify(newScore)];
+    } else if (tempArray[2] == null) {
+        newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(newScore)];
+    } else if (tempArray[3] == null) {
+        newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(tempArray[2]),JSON.stringify(newScore)];
+    } else {
+        newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(tempArray[2]),JSON.stringify(tempArray[3]),JSON.stringify(newScore)];
+    }
+
+    console.log("START OF saveHighScore() FUNCTION highScores in local storage is "+ localStorage.getItem("highScores"));
+    console.log("START OF saveHighScore() FUNCTION tempArray is "+ tempArray);
+    console.log("START OF saveHighScore() FUNCTION score is "+ score + " and entry is " + entry);
+    console.log("START OF saveHighScore() FUNCTION newArray is "+ newArray);
+
     
     // 1. Add to list
     highScores.push(newScore);
+    tempArray = tempArray.concat(newScore);
+
+    // console.log("AFTER PUSH highScores in local storage is "+ localStorage.getItem("highScores"));
+    // console.log("AFTER PUSH tempArray is "+ tempArray);
   
     // 2. Sort the list
     highScores.sort((a, b) => b.score - a.score);
+    sortedArray = newArray.sort((a, b) => b.score - a.score);
+    // tempArray.sort((a, b) => b.score - a.score);
+    console.log("AFTER SORT newArray is "+ sortedArray);
+
+    // console.log("AFTER SORT highScores in local storage is "+ localStorage.getItem("highScores"));
+    // console.log("AFTER SORT tempArray is "+ tempArray);
     
     // 3. Select new list
     highScores.splice(10);
+    // tempArray.splice(10);
+
+    // console.log("AFTER SPLICE highScores in local storage is "+ localStorage.getItem("highScores"));
+    // console.log("AFTER SPLICE tempArray is "+ tempArray);
     
     // 4. Save to local storage
     localStorage.setItem("highScores", JSON.stringify(highScores));
 
+    // console.log("AFTER SAVE highScores in local storage is "+ localStorage.getItem("highScores"));
+
+    // RESET QUIZ AND SHOW HIGHSCORE MODAL
     resetQuiz();
     showModal()
+
+    // console.log("END OF saveHighScore() FUNCTION highScores in local storage is "+ localStorage.getItem("highScores"));
+
 };
 
 function showHighScores() {
     // const highScores = JSON.parse(localStorage.getItem("highScores")) ?? [];
+
+    // THIS IS THE LIST IN THE MODAL FOR THE HIGH SCORES TO REPLACE
     const highScoreList = document.getElementById("highScores");
     
     highScoreList.innerHTML = highScores
@@ -367,17 +418,18 @@ function showHighScores() {
 
 // VALIDATE INITIAL ENTRY--------------------------------------------------------------
 
+// MAKE SURE INITIALS ARE ENTERED AND DO NOT EXCEED 3 CHARACTERS
 function validateEntry() {
 
     var entry = document.getElementById("initialEntryBox").value;
-    console.log("entry is "+entry);
+    // console.log("entry is "+entry);
 
     // CHECKS IF INITIAL BOX IS BLANK
     if (entry.length === 0) {
         // CHECKS IF PERSON MEANT TO CONTINUE WITHOUT ENTERING INITIALS
         if (confirm("Would you like to proceed without entering initials?")) {
             entry = "???";
-            console.log("entry is "+entry);
+            // console.log("entry is "+entry);
             saveHighScore(entry);
             resetQuiz();
         } else {
@@ -394,6 +446,5 @@ function validateEntry() {
         saveHighScore(entry_upper);
         resetQuiz();
     }
-
 }
 
