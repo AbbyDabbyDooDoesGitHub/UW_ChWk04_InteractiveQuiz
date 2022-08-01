@@ -37,9 +37,20 @@ WHEN the game is over
 THEN I can save my initials and my score
 ```
 
-<!-- ## Resources Used 
+## Resources Used 
 
-Use this area to list referenced apis, etc -->
+### Method References:
+
+- "How to Save High Scores in Local Storage" by Michael Karén: https://michael-karen.medium.com/how-to-save-high-scores-in-local-storage-7860baca9d68
+
+### Technical Resources:
+
+- Bootstrap Framework: https://getbootstrap.com/
+
+- jQuery Library: https://jquery.com/
+
+
+
 
 
 
