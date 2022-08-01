@@ -298,7 +298,7 @@ function finalizeScore () {
 // TEST IF THE SCORE IS HIGHER THAN THE LOWEST SAVED HIGHSCORE AND CHANGE OPTIONS ACCORDINGLY
 function testScores () {
 
-    var posLowNum = highScores[9];
+    var posLowNum = highScores[4];
     var lowestScore = 0;
     // console.log("posLowNum_score is "+posLowNum_score);
 
@@ -382,7 +382,7 @@ function saveHighScore(entry) {
     // console.log("AFTER SORT tempArray is "+ tempArray);
     
     // 3. Select new list
-    highScores.splice(10);
+    highScores.splice(5);
     // tempArray.splice(10);
 
     // console.log("AFTER SPLICE highScores in local storage is "+ localStorage.getItem("highScores"));
@@ -391,13 +391,13 @@ function saveHighScore(entry) {
     // 4. Save to local storage
     localStorage.setItem("highScores", JSON.stringify(highScores));
 
-    // console.log("AFTER SAVE highScores in local storage is "+ localStorage.getItem("highScores"));
+    console.log("AFTER SAVE highScores in local storage is "+ localStorage.getItem("highScores"));
 
     // RESET QUIZ AND SHOW HIGHSCORE MODAL
     resetQuiz();
     showModal()
 
-    // console.log("END OF saveHighScore() FUNCTION highScores in local storage is "+ localStorage.getItem("highScores"));
+    console.log("END OF saveHighScore() FUNCTION highScores in local storage is "+ localStorage.getItem("highScores"));
 
 };
 
