@@ -337,56 +337,43 @@ function testScores () {
 
 // SAVE HIGHSCORE TO LOCAL STORAGE
 function saveHighScore(entry) {
-    // newScore = [{"score":score,"entry":entry}];
     newScore = { score, entry };
-    tempArray = localStorage.getItem("highScores")??[];
-    tempArray = JSON.parse(tempArray);
-    newArray = [];
-    // tempArray1 = JSON.stringify(tempArray[0]);
 
-    // console.log("START OF saveHighScore() FUNCTION tempArray[0] is "+ tempArray[0]);
-    // console.log("START OF saveHighScore() FUNCTION tempArray[0] is "+ tempArray1);
+    // tempArray = localStorage.getItem("highScores")??[];
+    // tempArray = JSON.parse(tempArray);
+    // newArray = [];
 
-    if (tempArray[0] == null) {
-        newArray = [JSON.stringify(newScore)];
-    } else if (tempArray[1] == null) {
-        newArray = [JSON.stringify(tempArray[0]),JSON.stringify(newScore)];
-    } else if (tempArray[2] == null) {
-        newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(newScore)];
-    } else if (tempArray[3] == null) {
-        newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(tempArray[2]),JSON.stringify(newScore)];
-    } else {
-        newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(tempArray[2]),JSON.stringify(tempArray[3]),JSON.stringify(newScore)];
-    }
+    // if (tempArray[0] == null) {
+    //     newArray = [JSON.stringify(newScore)];
+    // } else if (tempArray[1] == null) {
+    //     newArray = [JSON.stringify(tempArray[0]),JSON.stringify(newScore)];
+    // } else if (tempArray[2] == null) {
+    //     newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(newScore)];
+    // } else if (tempArray[3] == null) {
+    //     newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(tempArray[2]),JSON.stringify(newScore)];
+    // } else {
+    //     newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(tempArray[2]),JSON.stringify(tempArray[3]),JSON.stringify(newScore)];
+    // }
+    // console.log("START OF saveHighScore() FUNCTION tempArray is "+ tempArray);
+    // console.log("START OF saveHighScore() FUNCTION score is "+ score + " and entry is " + entry);
+    // console.log("START OF saveHighScore() FUNCTION newArray is "+ newArray);
 
     console.log("START OF saveHighScore() FUNCTION highScores in local storage is "+ localStorage.getItem("highScores"));
-    console.log("START OF saveHighScore() FUNCTION tempArray is "+ tempArray);
-    console.log("START OF saveHighScore() FUNCTION score is "+ score + " and entry is " + entry);
-    console.log("START OF saveHighScore() FUNCTION newArray is "+ newArray);
-
     
     // 1. Add to list
     highScores.push(newScore);
-    tempArray = tempArray.concat(newScore);
 
-    // console.log("AFTER PUSH highScores in local storage is "+ localStorage.getItem("highScores"));
-    // console.log("AFTER PUSH tempArray is "+ tempArray);
+    console.log("AFTER PUSH highScores in local storage is "+ localStorage.getItem("highScores"));
   
     // 2. Sort the list
     highScores.sort((a, b) => b.score - a.score);
-    sortedArray = newArray.sort((a, b) => b.score - a.score);
-    // tempArray.sort((a, b) => b.score - a.score);
-    console.log("AFTER SORT newArray is "+ sortedArray);
 
     // console.log("AFTER SORT highScores in local storage is "+ localStorage.getItem("highScores"));
-    // console.log("AFTER SORT tempArray is "+ tempArray);
     
     // 3. Select new list
     highScores.splice(5);
-    // tempArray.splice(10);
 
-    // console.log("AFTER SPLICE highScores in local storage is "+ localStorage.getItem("highScores"));
-    // console.log("AFTER SPLICE tempArray is "+ tempArray);
+    console.log("AFTER SPLICE highScores in local storage is "+ localStorage.getItem("highScores"));
     
     // 4. Save to local storage
     localStorage.setItem("highScores", JSON.stringify(highScores));
