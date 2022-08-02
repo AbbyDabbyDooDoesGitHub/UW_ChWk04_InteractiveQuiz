@@ -4,14 +4,17 @@
 Build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
 
 
-Link to Web App: https://abbydabbydoodoesgithub.github.io/UW_ChWk04_InteractiveQuiz/
+### Link to Web App: 
+https://abbydabbydoodoesgithub.github.io/UW_ChWk04_InteractiveQuiz/
 
-App Preview:
+### App Preview:
 ![My Coding Quiz Screenshot](./Assets/Images/MyCodingQuizScreenShot.PNG "My Coding Quiz Screenshot")
 
 ## Notes
 
-<!-- Use this area to add personal notes on implementation, etc -->
+I started with the HTML bones for the page and mirrored the requested format. I built the section layouts first for the start, question, and endscreen portions before adding in some JavaScript functionalities. I wrote functions to shuffle the answers for each question so they fall in a random order, verify whether the correct answer was selected, time the test, and subtract a 10 second penalty for each incorrect answer. Bootstrap was used to put together the highscore modal, and then I spent the remaining time parsing--and JSON.parse-ing ;)--out the local storage for keeping highscores. 
+
+The article by Michael Karén listed under resources was super helpful in establishing a highscore-keeping system in the local storage and sorting them into highest to lowest scores for the modal to display. I ran into some trouble when the app was functioning correctly and would order the highscores correctly in the modal when multiple attempts were made, but it seemed to reset when the page refreshed despite the local storage showing the saved data correctly. After a lot of troubleshooting, it came down to a missing pair of parentheses in a method used by the modal that was returning an empty array. It was very satisfying to fix that line of code and see the app working as planned. 
 
 ## User Story
 
