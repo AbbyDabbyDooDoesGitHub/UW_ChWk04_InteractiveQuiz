@@ -59,7 +59,7 @@ var score;
 const HIGH_SCORES = 'highScores';
 const highScoreString = localStorage.getItem(HIGH_SCORES);
 // console.log(highScoreString);
-const highScores = JSON.parse.highScoreString ?? [];
+const highScores = JSON.parse(highScoreString) ?? [];
 // The nullish coalescing operator (??) is a logical operator that returns its right-hand side operand when its left-hand side operand is null or undefined, and otherwise returns its left-hand side operand.
 // console.log(highScores);
 
@@ -339,25 +339,6 @@ function testScores () {
 function saveHighScore(entry) {
     newScore = { score, entry };
 
-    // tempArray = localStorage.getItem("highScores")??[];
-    // tempArray = JSON.parse(tempArray);
-    // newArray = [];
-
-    // if (tempArray[0] == null) {
-    //     newArray = [JSON.stringify(newScore)];
-    // } else if (tempArray[1] == null) {
-    //     newArray = [JSON.stringify(tempArray[0]),JSON.stringify(newScore)];
-    // } else if (tempArray[2] == null) {
-    //     newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(newScore)];
-    // } else if (tempArray[3] == null) {
-    //     newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(tempArray[2]),JSON.stringify(newScore)];
-    // } else {
-    //     newArray = [JSON.stringify(tempArray[0]),JSON.stringify(tempArray[1]),JSON.stringify(tempArray[2]),JSON.stringify(tempArray[3]),JSON.stringify(newScore)];
-    // }
-    // console.log("START OF saveHighScore() FUNCTION tempArray is "+ tempArray);
-    // console.log("START OF saveHighScore() FUNCTION score is "+ score + " and entry is " + entry);
-    // console.log("START OF saveHighScore() FUNCTION newArray is "+ newArray);
-
     console.log("START OF saveHighScore() FUNCTION highScores in local storage is "+ localStorage.getItem("highScores"));
     
     // 1. Add to list
@@ -415,7 +396,7 @@ function validateEntry() {
     if (entry.length === 0) {
         // CHECKS IF PERSON MEANT TO CONTINUE WITHOUT ENTERING INITIALS
         if (confirm("Would you like to proceed without entering initials?")) {
-            entry = "???";
+            entry = "UNK";
             // console.log("entry is "+entry);
             saveHighScore(entry);
             resetQuiz();
